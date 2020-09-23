@@ -1,6 +1,6 @@
 def codon_dict():
 	coddict = dict()
-	coddict_lines= open('/home/mikhail/rosalind/codon_table.txt', 'r').readlines()
+	coddict_lines= open('codon_table.txt', 'r').readlines()
 	for line in coddict_lines:
 		codon, letter = [i for i in line.split()]
 		coddict.update({codon:letter})
