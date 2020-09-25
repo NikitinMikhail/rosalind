@@ -1,4 +1,5 @@
 CODON_TABLE_PATH = r'C:\Users\mishn\PycharmProjects\rosalind\codon_table.txt'
+PROTEIN_MASS_FILE = r'C:\Users\mishn\PycharmProjects\rosalind\protein_mass_table.txt'
 
 
 def one_line_reader(filepath):
@@ -51,3 +52,12 @@ def translate_rna(strand):
         prot_strand += cod_dict[strand[0:3]]
         strand = strand[3:]
     return prot_strand
+
+
+def get_protein_mass(protein):
+    mass_dict = dict()
+    with open(PROTEIN_MASS_FILE, 'r') as f:
+        mass_lines = f.readlines()
+        for line in mass_lines:
+            mass_dict.update({line.split()[0]: float(line.split()[1])})
+    return mass_dict[protein]
