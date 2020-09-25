@@ -54,7 +54,7 @@ def translate_rna(strand):
     return prot_strand
 
 
-def get_protein_mass(protein):
+def get_proteinw_mass(protein):
     mass_dict = dict()
     with open(PROTEIN_MASS_FILE, 'r') as f:
         mass_lines = f.readlines()
