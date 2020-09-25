@@ -1,3 +1,7 @@
+#Ignore dataset text files(rosalind-only)
+*.txt
+!/*txt
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
