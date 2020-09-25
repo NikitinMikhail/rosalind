@@ -1,5 +1,6 @@
 CODON_TABLE_PATH = r'C:\Users\mishn\PycharmProjects\rosalind\codon_table.txt'
 
+
 def one_line_reader(filepath):
     with open(filepath, 'r') as f:
         read_line = f.readline().strip()
@@ -41,3 +42,12 @@ def reverse_comp(strand):
     for item in rev_strand:
         rev_comp_strand += comp_dict[item]
     return rev_comp_strand
+
+
+def translate_rna(strand):
+    cod_dict = codon_dict()
+    prot_strand = ''
+    while len(strand) > 1 and cod_dict[strand[0:3]] != 'Stop':
+        prot_strand += cod_dict[strand[0:3]]
+        strand = strand[3:]
+    return prot_strand
