@@ -1,4 +1,4 @@
-CODON_TABLE_PATH = r'C:\Users\mishn\PycharmProjects\rosalind\codon_table.txt'2
+CODON_TABLE_PATH = r'C:\Users\mishn\PycharmProjects\rosalind\codon_table.txt'
 
 def one_line_reader(filepath):
     with open(filepath, 'r') as f:
