@@ -17,7 +17,7 @@ cons_seq = ''
 counter = 0
 for _ in range(len(fasta_dict[list(fasta_dict.keys())[0]])):
     value_list = [letter_dict[base][counter] for base in letter_dict.keys()]
-    cons_seq += base_list[np.argmax(    value_list)]
+    cons_seq += base_list[np.argmax(value_list)]
     counter += 1
 
 print(cons_seq)

@@ -53,11 +53,17 @@ def translate_rna(strand):
         strand = strand[3:]
     return prot_strand
 
+def translate_dna(strand):
+    return translate_rna(strand.replace('T', 'U'))
 
-def get_proteinw_mass(protein):
+def get_protein_mass(protein):
     mass_dict = dict()
     with open(PROTEIN_MASS_FILE, 'r') as f:
         mass_lines = f.readlines()
         for line in mass_lines:
             mass_dict.update({line.split()[0]: float(line.split()[1])})
     return mass_dict[protein]
+
+def substring_positions(string, substring):
+    positions = [str(m.start() + 1) for m in re.finditer('(?={})'.format(substring), string)]
+    return positions
