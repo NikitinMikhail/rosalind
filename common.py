@@ -1,10 +1,16 @@
-CODON_TABLE_PATH = r'C:\Users\mishn\PycharmProjects\rosalind\codon_table.txt'
-
+CODON_TABLE_PATH = r'C:\Users\mishn\PycharmProjects\rosalind\codon_table.txt'2
 
 def one_line_reader(filepath):
     with open(filepath, 'r') as f:
         read_line = f.readline().strip()
     return read_line
+
+
+def multi_line_reader(filepath):
+    with open(filepath, 'r') as f:
+        read_lines = f.readlines()
+    read_lines = [line.rstrip() for line in read_lines]
+    return read_lines
 
 
 def codon_dict():
@@ -24,7 +30,7 @@ def fasta_parser(filepath):
             current_header = line.strip()[1:]
             fasta_dict[current_header] = ''
         elif len(line) > 1:
-            fasta_dict[current_header] += line.strip()
+            fasta_dict[current_header] += line.rstrip()
     return fasta_dict
 
 
