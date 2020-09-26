@@ -1,5 +1,6 @@
 CODON_TABLE_PATH = r'C:\Users\mishn\PycharmProjects\rosalind\codon_table.txt'
 PROTEIN_MASS_FILE = r'C:\Users\mishn\PycharmProjects\rosalind\protein_mass_table.txt'
+import re
 
 
 def one_line_reader(filepath):
@@ -48,13 +49,16 @@ def reverse_comp(strand):
 def translate_rna(strand):
     cod_dict = codon_dict()
     prot_strand = ''
-    while len(strand) > 1 and cod_dict[strand[0:3]] != 'Stop':
-        prot_strand += cod_dict[strand[0:3]]
-        strand = strand[3:]
+    inner_strand = strand
+    while len(inner_strand) > 1 and cod_dict[inner_strand[0:3]] != 'Stop':
+        prot_strand += cod_dict[inner_strand[0:3]]
+        inner_strand = inner_strand[3:]
     return prot_strand
+
 
 def translate_dna(strand):
     return translate_rna(strand.replace('T', 'U'))
+
 
 def get_protein_mass(protein):
     mass_dict = dict()
@@ -64,6 +68,22 @@ def get_protein_mass(protein):
             mass_dict.update({line.split()[0]: float(line.split()[1])})
     return mass_dict[protein]
 
+
 def substring_positions(string, substring):
-    positions = [str(m.start() + 1) for m in re.finditer('(?={})'.format(substring), string)]
+    positions = [m.start() for m in re.finditer('(?={})'.format(substring), string)]
     return positions
+
+
+def find_orf_dna(sequence):
+    start_codon_positions = substring_positions(sequence, 'ATG')
+    stop_codon_positions = substring_positions(sequence, 'TAA')
+    stop_codon_positions.extend(substring_positions(sequence, 'TAG'))
+    stop_codon_positions.extend(substring_positions(sequence, 'TGA'))
+    coord_list = []
+    for item in start_codon_positions:
+        for inner_item in stop_codon_positions:
+            if inner_item > item and item % 3 == inner_item % 3:
+                coord_list.append((item, inner_item))
+                break
+    orf_list = [sequence[start:stop] for (start, stop) in coord_list]
+    return orf_list
