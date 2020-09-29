@@ -4,6 +4,11 @@ import re
 
 
 def one_line_reader(filepath):
+    """
+
+    :param filepath: path to a task file with one line of text
+    :return: that line without EOL element
+    """
     with open(filepath, 'r') as f:
         read_line = f.readline().strip()
     return read_line
