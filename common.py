@@ -168,3 +168,4 @@ def overlapping(string1, string2):
         if string2[:overlap_start] == string1[-overlap_len - overlap_start:-overlap_len]:
             real_overlap = True
     return real_overlap
+
