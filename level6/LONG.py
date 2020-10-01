@@ -2,7 +2,6 @@ import common
 
 '''
 Too straight solution, but it should work as intended with 50 strings.
-
 '''
 
 
