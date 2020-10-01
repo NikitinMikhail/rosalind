@@ -1,7 +1,8 @@
-CODON_TABLE_PATH = r'C:\Users\mishn\PycharmProjects\rosalind\codon_table.txt'
-PROTEIN_MASS_FILE = r'C:\Users\mishn\PycharmProjects\rosalind\protein_mass_table.txt'
 import re
 import itertools
+
+CODON_TABLE_PATH = r'C:\Users\mishn\PycharmProjects\rosalind\codon_table.txt'
+PROTEIN_MASS_FILE = r'C:\Users\mishn\PycharmProjects\rosalind\protein_mass_table.txt'
 
 
 def one_line_reader(filepath):
@@ -139,6 +140,7 @@ def find_orf_dna(sequence):
     orf_list = [sequence[start:stop] for (start, stop) in coord_list]
     return orf_list
 
+
 def get_kmers(alphabet, length):
     """
 
@@ -150,3 +152,19 @@ def get_kmers(alphabet, length):
     kmers_as_string = [''.join(elem) for elem in kmers_as_sets]
 
     return kmers_as_string
+
+
+def overlapping(string1, string2):
+    """
+
+    :param string1: 'left' string
+    :param string2: 'right' string
+    :return: True if they overlaps in this order, False otherwise
+    """
+    overlap_len = len(string1) // 2
+    real_overlap = False
+    if string1[-overlap_len:] in string2:
+        overlap_start = substring_positions(string2, string1[-overlap_len:])[0]
+        if string2[:overlap_start] == string1[-overlap_len - overlap_start:-overlap_len]:
+            real_overlap = True
+    return real_overlap
