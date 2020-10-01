@@ -1,4 +1,4 @@
-#Ignore dataset text files(rosalind-only)
+#Ignore downloaded dataset text files(rosalind-only)
 *.txt
 !/*txt
 
