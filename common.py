@@ -1,6 +1,7 @@
 CODON_TABLE_PATH = r'C:\Users\mishn\PycharmProjects\rosalind\codon_table.txt'
 PROTEIN_MASS_FILE = r'C:\Users\mishn\PycharmProjects\rosalind\protein_mass_table.txt'
 import re
+import itertools
 
 
 def one_line_reader(filepath):
@@ -137,3 +138,15 @@ def find_orf_dna(sequence):
                 break
     orf_list = [sequence[start:stop] for (start, stop) in coord_list]
     return orf_list
+
+def get_kmers(alphabet, length):
+    """
+
+    :param alphabet: list of possible letters
+    :param length: length of kmer
+    :return: list of all possible kmers
+    """
+    kmers_as_sets = sorted(list(itertools.product(alphabet, repeat=length)))
+    kmers_as_string = [''.join(elem) for elem in kmers_as_sets]
+
+    return kmers_as_string
