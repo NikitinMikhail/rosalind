@@ -11,7 +11,8 @@ def get_superstrings(adj_list):
     for _ in adj_list:
         for item in adj_list:
             for inner_item in superstrings:
-                if item[1] == inner_item[0] and item[0] not in inner_item and [item[0]] + inner_item not in superstrings:
+                if item[1] == inner_item[0] and item[0] not in inner_item and [
+                    item[0]] + inner_item not in superstrings:
                     superstrings.append([item[0]] + inner_item)
                     if len(inner_item) == len(fasta_dict) - 1:
                         return superstrings
