@@ -11,11 +11,6 @@ sequence = fasta_dict[list(fasta_dict.keys())[0]]
 
 AU = 0
 GC = 0
-for nt in sequence:
-    if nt == 'A':
-        AU += 1
-    elif nt == 'G':
-        GC += 1
-
+AU, GC = (sequence.count(item) for item in ('A', 'G'))
 matchings = math.factorial(AU) * math.factorial(GC)
 print(matchings)
