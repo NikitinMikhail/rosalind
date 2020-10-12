@@ -112,7 +112,7 @@ def get_protein_mass(protein):
 
 def substring_positions(string, substring):
     """
-
+    Positions of _substring_ start in _string_, starting from zero
     :param string: reference string
     :param substring: string to search
     :return: positions of substring starting from 0
@@ -123,7 +123,7 @@ def substring_positions(string, substring):
 
 def find_orf_dna(sequence):
     """
-
+    List of Open Reading Frames coordinates of DNA sequence
     :param sequence: DNA string
     :return: list of (orf start pos, orf end pos)
     """
@@ -143,7 +143,7 @@ def find_orf_dna(sequence):
 
 def get_kmers(alphabet, length):
     """
-
+    Get all kmers of _length_ from _alphabet_
     :param alphabet: list of possible letters
     :param length: length of kmer
     :return: list of all possible kmers
@@ -156,7 +156,7 @@ def get_kmers(alphabet, length):
 
 def overlapping(string1, string2):
     """
-
+    Returns result of addition of string2 to string1, excluding overlapping part
     :param string1: 'left' string
     :param string2: 'right' string
     :return: True if they overlaps in this order, False otherwise
@@ -169,3 +169,44 @@ def overlapping(string1, string2):
             real_overlap = True
     return real_overlap
 
+def hamming_distance(seq1, seq2):
+    """
+    Hamming distance(number of mismathces) in two sequences
+    :param seq1: string
+    :param seq2: another string
+    :return: int, number of mismatches
+    """
+    mismatch_count = 0
+    for index in range(len(seq1)):
+        mismatch_count += 1 * (seq1[index] != seq2[index])
+    return mismatch_count
+
+def Factorial(n):
+    """
+    Factorial of n
+    :param n: positive integer
+    :return: factorial, integer
+    """
+    fact = 1
+    for i in range(1, n + 1):
+        fact *= i
+    return fact
+
+
+def combinations(n, k):
+    """
+    C(n,k) = n! / (n-k)! * k! - math combinations
+    :param n:integer
+    :param k:integer
+    :return:integer of C(n,k)
+    """
+    return (Factorial(n) // Factorial(n - k) // Factorial(k))
+
+def modulo(x, y):
+    '''
+    Return x mod y in diffetent way. Needs to avoid "Int is too large to convert to float" problem
+    :param x:
+    :param y:
+    :return: x mod y
+    '''
+    return x - (x // y) * y
